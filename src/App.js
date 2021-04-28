@@ -1,25 +1,39 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import firebase from 'firebase';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  
+  constructor(){
+    super();
+    this.state = {
+      selectedNoteIndex: null,
+      selectedNote: null,
+      notes:null
+    };
+  }
+  
+  render() {
+    return(
+      <div>Hello</div>
+    )
+  }
+
+  componentDidMount = () => {
+    firebase.firestore()
+      .collection('notes')
+      .onSnapshot(serverUpdate => {
+        const notesarray = serverUpdate.docs.map(doc => {
+          const data = doc.data();
+          data['id'] = doc.id;
+          return data;
+        });
+        console.log(notesarray);
+        this.setState({notes: notesarray});
+      });
+  }
+
+
 }
 
 export default App;
