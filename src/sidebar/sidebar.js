@@ -16,21 +16,28 @@ class SidebarComponent extends React.Component {
     }
     render() {
 
-        const { notes, classes, selectedNoteIndex} = this.props;
+        const { notes, classes, selectedNoteIndex } = this.props;
 
         return(
             <div className={classes.sidebarContainer}>
                 <Button onClick={ this.newNoteBtnClick}
-                    className={classes.newNoteBtn}>NEW NOTE</Button>
+                    className={classes.newNoteBtn}>{this.state.addingNote? "Cancel" : "New Note"}</Button>
                     {
-                        this.sate.addingNote ? 
+                        this.state.addingNote ? 
                         <div>
                             <input type='text'
                                 className={classes.netNoteInput}
                                 placeholder='Enter note title'
-                                onKeyUp={(e)=>this.updateTitle(e.target.value)}></input>
+                                onKeyUp={(e) => this.updateTitle(e.target.value)}></input>
+                            <Button className={classes.newNoteSubmitBtn}
+                            onClick={this.newNote}>Submit Note</Button>
                         </div> : null
                     }
+                    <List>
+                        {
+                            
+                        }
+                    </List>
             </div>);
     }
 
@@ -40,7 +47,11 @@ class SidebarComponent extends React.Component {
     }
 
     updateTitle = (txt)=> {
+        this.setState({title: txt});
         console.log('Here IT IS : ', txt);
+    }
+    newNote = () => {
+        console.log(this.state);
     }
 }
 
