@@ -24,7 +24,7 @@ ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('bestnote-container')
+  document.getElementById("bestnote-container")
 );
 
 // If you want to start measuring performance in your app, pass a function
