@@ -27,7 +27,7 @@ class SidebarComponent extends React.Component {
                             this.state.addingNote ? 
                             <div>
                                 <input type='text'
-                                    className={classes.netNoteInput}
+                                    className={classes.newNoteInput}
                                     placeholder='Enter note title'
                                     onKeyUp={(e) => this.updateTitle(e.target.value)}></input>
                                 <Button className={classes.newNoteSubmitBtn}
@@ -57,7 +57,7 @@ class SidebarComponent extends React.Component {
             );
         }
         else {
-            return(<div>Notes is Null.!</div>);
+            return(<div>Notes is Loading....!</div>);
         }
     }
 
